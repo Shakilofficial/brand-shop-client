@@ -1,9 +1,13 @@
 import BrandCollection from "../../components/BrandCollection/BrandCollection";
+import Reviews from "../../components/Reviews/Reviews";
+import Slider from "../../components/Slider/Slider";
 
 const Home = () => {
   return (
       <div>
-          <BrandCollection/>
+          <Slider/>
+          <BrandCollection />
+          <Reviews/>
     </div>
   );
 };

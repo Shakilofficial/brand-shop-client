@@ -1,4 +1,49 @@
+import Swal from "sweetalert2";
 const AddProducts = () => {
+  const handleAddProduct = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const image = form.image.value;
+    const name = form.name.value;
+    const brand_name = form.brand_name.value;
+    const type = form.type.value;
+    const price = form.price.value;
+    const description = form.description.value;
+    const rating = form.rating.value;
+
+    const newProduct = {
+      image,
+      name,
+      brand_name,
+      type,
+      price,
+      description,
+      rating,
+    };
+    console.log(newProduct);
+
+    //send data to the server
+    fetch("http://localhost:5000/product", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            Swal.fire({
+                title: 'Success!',
+                text: 'Product Added Successfully',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+              })
+          }
+      });
+  };
   return (
     <div
       className="bg-cover bg-center p-4 md:p-8 lg:p-12 rounded-lg max-w-6xl mx-auto"
@@ -15,7 +60,10 @@ const AddProducts = () => {
         </p>
       </div>
       <div>
-        <form className="max-w-6xl mx-auto p-8 rounded-lg md:px-8 lg:px-16 shadow-md">
+        <form
+          onSubmit={handleAddProduct}
+          className="max-w-6xl mx-auto p-8 rounded-lg md:px-8 lg:px-16 shadow-md"
+        >
           {/* Product Image URL*/}
           <div className="mb-2">
             <label className="block text-gray-600 font-semibold text-lg">
@@ -45,7 +93,7 @@ const AddProducts = () => {
             </label>
             <input
               type="text"
-              name="brand-name"
+              name="brand_name"
               className="w-full border bg-transparent border-cyan-500 rounded-md p-2"
             ></input>
           </div>

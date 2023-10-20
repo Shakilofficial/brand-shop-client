@@ -11,7 +11,11 @@
 - Responsive Design: The website adapts to different devices, offering a seamless experience on both desktop and mobile platforms, enhancing accessibility.
 
 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-@copy - Md Shakil Hossain ~ 2023
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 # b8a10-brandshop-client-side-Shakilofficial

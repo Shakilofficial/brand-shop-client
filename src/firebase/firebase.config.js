@@ -5,13 +5,14 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// console.log(import.meta.env.VITE_APIKEY);
 const firebaseConfig = {
-  apiKey: "AIzaSyDFCHNqexO2xGPkBuwbw__BKppUwdZv2VQ",
-  authDomain: "brand-shop-64e8b.firebaseapp.com",
-  projectId: "brand-shop-64e8b",
-  storageBucket: "brand-shop-64e8b.appspot.com",
-  messagingSenderId: "147180315347",
-  appId: "1:147180315347:web:fbfbb44cc62b56a6746a26"
+  apiKey:import.meta.env.VITE_APIKEY ,
+  authDomain:import.meta.env.VITE_AUTHDOMAIN,
+  projectId:import.meta.env.VITE_PROJECTID ,
+  storageBucket:import.meta.env.VITE_STORAGEBUCKET ,
+  messagingSenderId:import.meta.env.VITE_MESSAGINGSENDERID,
+  appId:import.meta.env.VITE_APPID 
 };
 
 // Initialize Firebase

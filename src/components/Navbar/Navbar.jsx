@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ toggleDarkMode, isDarkMode }) => {
   const [navbar, setNavbar] = useState(false);
 
   const navLinks = (
@@ -124,12 +125,23 @@ const Navbar = () => {
               </ul>
             </div>
           </div>
-          <div className="space-x-2 md:inline-block flex justify-center items-center">
+          <div className="gap-5 flex justify-center items-center">
             <Link to="/signIn">
               <button className="px-4 py-2 font-semibold text-white text-lg bg-blue-500 rounded-md shadow hover:bg-blue-800">
                 Sign In
               </button>
             </Link>
+            <button onClick={toggleDarkMode} className="text-3xl text-blue-900">
+              {isDarkMode ? (
+                <>
+                  <FaSun className="flex justify-center items-center" />
+                </>
+              ) : (
+                <>
+                  <FaMoon className="flex justify-center items-center" />
+                </>
+              )}
+            </button>
           </div>
         </div>
       </nav>

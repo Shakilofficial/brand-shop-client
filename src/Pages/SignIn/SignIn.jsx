@@ -1,3 +1,4 @@
+import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 const SignIn = () => {
   return (
@@ -52,18 +53,8 @@ const SignIn = () => {
                 Sign In
               </button>
               <label className="m-4 text-lg">Sign in with</label>
-              <button
-                type="button"
-                className="mx-1 px-8 py-2 rounded-lg bg-blue-500 hover:bg-blue-700 text-white shadow-[0_4px_9px_-4px_#3b71ca]"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mx-auto h-4 w-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
-                </svg>
+              <button className="mx-auto w-1/3 bg-blue-200 px-4 py-2 rounded-md">
+                <FaGoogle className="text-sky-800 text-lg mx-auto"/>
               </button>
             </div>
           </form>

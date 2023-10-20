@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  const handleSignUp =()=> {
+  
+  }
   return (
       <div className="my-6 py-2">
           <h3 className="text-4xl font-bold text-center text-cyan-600">Welcome !!!</h3>

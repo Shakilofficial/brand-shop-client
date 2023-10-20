@@ -30,7 +30,7 @@ const Products = () => {
               <img
                 className="h-28 w-40 rounded-md"
                 src={product.image}
-                alt="coffee"
+                alt=""
               />
             </div>
             <div className="px-4 gap-5 flex w-full justify-between items-center">
@@ -42,8 +42,8 @@ const Products = () => {
                 <p className="font-semibold">Price:$ {product.price} </p>
               </div>
               <div className="btn-group btn-group-vertical space-y-2">
-                <button className="btn btn-primary">View Details</button>
-                <Link to={`/updateCoffee/${product._id}`}>
+                <Link to={`/productDetails/${product._id}`}>                <button className="btn btn-primary w-full">View Details</button></Link>
+                <Link to={`/updateProduct/${product._id}`} >
                   <button className="btn btn-success w-full">Update</button>
                 </Link>
                 <button className="btn btn-error">Add to Cart</button>

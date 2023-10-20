@@ -6,10 +6,11 @@ import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home";
 import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
+import ProductDetails from "../components/ProductDetails/ProductDetails";
 import Products from "../components/Products/Products";
 import UpdateProducts from "../components/UpdateProducts/UpdateProducts";
 import Root from "../layouts/Root";
-import ProductDetails from "../components/ProductDetails/ProductDetails";
+import PrivateRoute from "../providers/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,25 +24,51 @@ const router = createBrowserRouter([
       },
       {
         path: "/addProducts",
-        element: <AddProducts />,
+        element: (
+          <PrivateRoute>
+            <AddProducts />
+          </PrivateRoute>
+        ),
       },
       {
         path: "updateProduct/:id",
-        element: <UpdateProducts />,
-        loader: () => fetch("http://localhost:5000/product"),
+        element: (
+          <PrivateRoute>
+            <UpdateProducts />
+          </PrivateRoute>
+        ),
+        loader: () =>
+          fetch(
+            "https://brand-shop-server-e2a7wsb7t-shakilofficial.vercel.app/product"
+          ),
       },
       {
         path: "/productDetails/:id",
-        element: <ProductDetails />,
-        loader: () => fetch("http://localhost:5000/product"),
+        element: (
+          <PrivateRoute>
+            <ProductDetails />
+          </PrivateRoute>
+        ),
+        loader: () =>
+          fetch(
+            "https://brand-shop-server-e2a7wsb7t-shakilofficial.vercel.app/product"
+          ),
       },
       {
-        path: "/cart",
-        element: <Cart />,
+        path: "/cart/:email",
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/product/:brand",
-        element: <Products />,
+        element: (
+          <PrivateRoute>
+            <Products />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/signIn",

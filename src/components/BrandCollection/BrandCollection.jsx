@@ -5,7 +5,7 @@ const BrandCollection = () => {
   const [brands, setBrands] = useState([]);
 
   useEffect(() => {
-    fetch("/public/Brands.json")
+    fetch("/Brands.json")
       .then((res) => res.json())
       .then((data) => {
         setBrands(data);

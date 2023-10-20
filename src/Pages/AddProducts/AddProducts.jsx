@@ -24,7 +24,7 @@ const AddProducts = () => {
     console.log(newProduct);
 
     //send data to the server
-    fetch("http://localhost:5000/product", {
+    fetch("https://brand-shop-server-e2a7wsb7t-shakilofficial.vercel.app", {
       method: "POST",
       headers: {
         "content-type": "application/json",

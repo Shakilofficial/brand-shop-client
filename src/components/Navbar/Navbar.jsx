@@ -56,7 +56,7 @@ const Navbar = ({ toggleDarkMode, isDarkMode }) => {
       </li>
       <li className="mr-2 text-lg font-semibold">
         <NavLink
-          to="/cart"
+          to="/cart/:email"
           className={({ isActive, isPending }) =>
             isPending
               ? "pending"

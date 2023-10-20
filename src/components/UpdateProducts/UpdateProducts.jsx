@@ -1,14 +1,22 @@
-import { useState } from "react";
-import {  useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLoaderData, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateProducts = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState({
-    image: "",
-    name: "",
-  });
+  const [isProduct, setProduct] = useState({});
 
+  const products = useLoaderData();
+
+  useEffect(() => {
+    const productItem = products.filter((pr) => pr._id === id);
+    if (productItem.length > 0) {
+      setProduct(productItem[0]);
+    }
+  }, [products, id]);
+  console.log(isProduct.brand_name);
+
+  console.log(isProduct);
   const handleUpdateProduct = (event) => {
     event.preventDefault();
 
@@ -29,7 +37,7 @@ const UpdateProducts = () => {
     };
 
     // Send data to the server
-    fetch(`http://localhost:5000/product/${id}`, {
+    fetch(`https://brand-shop-server-e2a7wsb7t-shakilofficial.vercel.app/product/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -57,14 +65,14 @@ const UpdateProducts = () => {
         <div>
           <h2 className="text-4xl text-center font-bold">
             Update Product
-            <span className="text-sky-500"> {product.name}</span>
+            <span className="text-sky-500"> {isProduct?.name}</span>
           </h2>
           <div>
             <form
               onSubmit={handleUpdateProduct}
               className="max-w-6xl mx-auto p-8 rounded-lg md:px-8 lg:px-16 shadow-md"
             >
-              {/* Product Image URL*/}
+              {/* Product Image URL */}
               <div className="mb-2">
                 <label className="block text-gray-600 font-semibold text-lg">
                   Image URL
@@ -72,9 +80,9 @@ const UpdateProducts = () => {
                 <input
                   type="text"
                   name="image"
-                  defaultValue={product.image}
+                  defaultValue={isProduct?.image}
                   className="w-full border bg-transparent border-cyan-500 rounded-md p-2"
-                ></input>
+                />
               </div>
               {/* Product Name */}
               <div className="mb-2">
@@ -84,9 +92,60 @@ const UpdateProducts = () => {
                 <input
                   type="text"
                   name="name"
-                  defaultValue={product.name}
+                  defaultValue={isProduct?.name}
                   className="w-full border bg-transparent border-cyan-500 rounded-md p-2"
-                ></input>
+                />
+              </div>
+              {/* Brand Name */}
+              <div className="mb-2">
+                <label className="block text-gray-600 font-semibold text-lg">
+                  Brand Name
+                </label>
+                <input
+                  type="text"
+                  name="brandName"
+                  defaultValue={isProduct?.brand_name}
+                  className="w-full border bg-transparent border-cyan-500 rounded-md p-2"
+                />
+              </div>
+              {/* Product Type */}
+              <div className="mb-2">
+                <label className="block text-gray-600 font-semibold text-lg">
+                  Type
+                </label>
+                <input
+                  type="text"
+                  name="type"
+                  defaultValue={isProduct?.type}
+                  className="w-full border bg-transparent border-cyan-500 rounded-md p-2"
+                />
+              </div>
+              {/* Product Price */}
+              <div className="mb-2">
+                <label className="block text-gray-600 font-semibold text-lg">
+                  Price
+                </label>
+                <input
+                  type="number"
+                  name="price"
+                  defaultValue={isProduct?.price}
+                  className="w-full border bg-transparent border-cyan-500 rounded-md p-2"
+                />
+              </div>
+              {/* Product Rating */}
+              <div className="mb-2">
+                <label className="block text-gray-600 font-semibold text-lg">
+                  Rating
+                </label>
+                <input
+                  type="number"
+                  name="rating"
+                  defaultValue={isProduct?.rating}
+                  step="0.1"
+                  min="0"
+                  max="5"
+                  className="w-full border bg-transparent border-cyan-500 rounded-md p-2"
+                />
               </div>
               {/* Submit Button */}
               <div className="flex justify-center mt-4">

@@ -1,9 +1,28 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = ({ toggleDarkMode, isDarkMode }) => {
   const [navbar, setNavbar] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    logOut()
+      .then((result) => {
+        // console.log(result.user);
+        Swal.fire({
+          title: "Success!",
+          text: "User Logout Successfully",
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+      })
+      .catch((error) => {
+        // console.error(error);
+      });
+  };
 
   const navLinks = (
     <>
@@ -125,23 +144,52 @@ const Navbar = ({ toggleDarkMode, isDarkMode }) => {
               </ul>
             </div>
           </div>
-          <div className="gap-5 flex justify-center items-center">
-            <Link to="/signIn">
-              <button className="px-4 py-2 font-semibold text-white text-lg bg-blue-500 rounded-md shadow hover:bg-blue-800">
-                Sign In
-              </button>
-            </Link>
-            <button onClick={toggleDarkMode} className="text-3xl text-blue-900">
-              {isDarkMode ? (
-                <>
-                  <FaSun className="flex justify-center items-center" />
-                </>
-              ) : (
-                <>
-                  <FaMoon className="flex justify-center items-center" />
-                </>
+          <div>
+            <div>{user ? <p className="px-2">{user.displayName}</p> : ""}</div>
+            <div className="mr-2">
+              {user && user.photoURL && (
+                <img
+                  src={user.photoURL}
+                  alt="Profile"
+                  title={user.displayName}
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "50%",
+                  }}
+                />
               )}
-            </button>
+            </div>
+            <div className="gap-5 flex justify-center items-center">
+              {user ? (
+                <button
+                  onClick={handleSignOut}
+                  className="px-4 py-2 font-semibold text-white text-lg bg-blue-500 rounded-md shadow hover:bg-blue-800"
+                >
+                  Sign Out
+                </button>
+              ) : (
+                <Link to="/signIn">
+                  <button className="px-4 py-2 font-semibold text-white text-lg bg-blue-500 rounded-md shadow hover:bg-blue-800">
+                    Sign In
+                  </button>
+                </Link>
+              )}
+              <button
+                onClick={toggleDarkMode}
+                className="text-3xl text-blue-900"
+              >
+                {isDarkMode ? (
+                  <>
+                    <FaSun className="flex justify-center items-center" />
+                  </>
+                ) : (
+                  <>
+                    <FaMoon className="flex justify-center items-center" />
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </nav>

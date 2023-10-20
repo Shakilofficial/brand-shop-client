@@ -1,9 +1,72 @@
+import { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
+  const { signIn, googleSingIn } = useContext(AuthContext);
+  const [error, setError] = useState(null);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long");
+    } else if (!/[A-Z]/.test(password)) {
+      setError("Password must contain at least one capital letter");
+    } else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+      setError("Password must contain at least one special character");
+    } else {
+      signIn(email, password)
+        .then((result) => {
+          Swal.fire({
+            title: "Success!",
+            text: "Sign in Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          navigate(location?.state ? location.state : "/");
+        })
+        .catch((error) => {
+          setError(error);
+          Swal.fire({
+            title: "Error!",
+            text: "Error",
+            icon: "error",
+            confirmButtonText: "Cool",
+          });
+        });
+    }
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSingIn()
+      .then((result) => {
+        Swal.fire({
+          title: "Success!",
+          text: "Sign in Successfully",
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        setError(error);
+        Swal.fire({
+          title: "Success!",
+          text: "Sign in Successfully",
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+      });
+  };
 
   return (
     <div className="my-6">
@@ -22,7 +85,7 @@ const SignIn = () => {
           />
         </div>
         <div className="md:w-1/3 max-w-sm">
-          <form>
+          <form onSubmit={handleSignIn}>
             <label className="mr-1">Email</label>
             <input
               className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
@@ -59,7 +122,10 @@ const SignIn = () => {
                 Sign In
               </button>
               <label className="m-4 text-lg">Sign in with</label>
-              <button className="mx-auto w-1/3 bg-blue-200 px-4 py-2 rounded-md">
+              <button
+                onClick={handleGoogleSignIn}
+                className="mx-auto w-1/3 bg-blue-200 px-4 py-2 rounded-md"
+              >
                 <FaGoogle className="text-sky-800 text-lg mx-auto" />
               </button>
             </div>
@@ -73,6 +139,7 @@ const SignIn = () => {
               SignUp
             </Link>
           </div>
+          {error && <p className="text-red-600 text-sm text-center">{error}</p>}
         </div>
       </section>
     </div>

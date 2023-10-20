@@ -145,26 +145,28 @@ const Navbar = ({ toggleDarkMode, isDarkMode }) => {
             </div>
           </div>
           <div>
-            <div>{user ? <p className="px-2">{user.displayName}</p> : ""}</div>
-            <div className="mr-2">
-              {user && user.photoURL && (
-                <img
-                  src={user.photoURL}
-                  alt="Profile"
-                  title={user.displayName}
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                  }}
-                />
-              )}
-            </div>
             <div className="gap-5 flex justify-center items-center">
+              <div>
+                {user ? <p className="px-2 text-lg font-semibold">{user.displayName}</p> : ""}
+              </div>
+              <div className="mr-2">
+                {user && user.photoURL && (
+                  <img
+                    src={user.photoURL}
+                    alt="Profile"
+                    title={user.displayName}
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      borderRadius: "50%",
+                    }}
+                  />
+                )}
+              </div>
               {user ? (
                 <button
                   onClick={handleSignOut}
-                  className="px-4 py-2 font-semibold text-white text-lg bg-blue-500 rounded-md shadow hover:bg-blue-800"
+                  className="px-2 py-2 font-semibold text-white text-lg bg-blue-500 rounded-md shadow hover:bg-blue-800"
                 >
                   Sign Out
                 </button>

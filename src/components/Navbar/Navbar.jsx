@@ -65,7 +65,7 @@ const Navbar = ({ toggleDarkMode, isDarkMode }) => {
               : ""
           }
         >
-          Cart
+          My Cart
         </NavLink>
       </li>
       <li className="text-lg font-semibold">

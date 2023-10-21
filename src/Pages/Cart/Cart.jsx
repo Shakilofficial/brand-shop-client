@@ -38,12 +38,12 @@ const Cart = () => {
   }, []);
 
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
       {isCart.length > 0 ? (
         isCart.map((cart) => (
           <div
             key={cart._id}
-            className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 my-20"
+            className=""
           >
             <div className="flex gap-6 items-center bg-slate-100 p-8 rounded-md">
               <div>

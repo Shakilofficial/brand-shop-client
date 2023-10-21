@@ -37,13 +37,16 @@ const UpdateProducts = () => {
     };
 
     // Send data to the server
-    fetch(`https://brand-shop-server-e2a7wsb7t-shakilofficial.vercel.app/product/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedProduct),
-    })
+    fetch(
+      `https://brand-shop-server-e2a7wsb7t-shakilofficial.vercel.app/product/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedProduct),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

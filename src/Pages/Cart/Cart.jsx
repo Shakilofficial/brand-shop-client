@@ -16,7 +16,7 @@ const Cart = () => {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://brand-shop-server-e2a7wsb7t-shakilofficial.vercel.app/${id}`, {
+        fetch(`https://brand-shop-server-e2a7wsb7t-shakilofficial.vercel.app/cart/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -30,7 +30,7 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    fetch(`https://brand-shop-server-e2a7wsb7t-shakilofficial.vercel.app/${user.email}`)
+    fetch(`https://brand-shop-server-e2a7wsb7t-shakilofficial.vercel.app/cart/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setIsCart(data);

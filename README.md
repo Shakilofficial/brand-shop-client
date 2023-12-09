@@ -1,6 +1,6 @@
 # Features of Brand-Shop
 
-- Brand-Based Categories: The website specializes in one of seven categories, such as Technology, Fashion, or Food, ensuring a focused user experience.
+- Brand-Based Categories: The website specializes in one of seven categories, such as Technology nsuring a focused user experience.
 
 - User Authentication: Users can register and log in with email and password or alternative logins (e.g., Google), providing a personalized experience.
 
